@@ -13,6 +13,11 @@
 # [*fpm*]
 #   Install and configure php-fpm
 #
+# [*fpm_service_name*]
+#   This is the name of the php-fpm service. It defaults to reasonable OS
+#   defaults but can be different if an alternative repository (like Red Hat
+#   Software Collections) is used.
+#
 # [*dev*]
 #   Install php header files, needed to install pecl modules
 #
@@ -47,21 +52,22 @@
 #   debian/ubuntu systems. This defaults to '/usr/sbin/php5query'.
 #
 class php (
-  $ensure         = $::php::params::ensure,
-  $manage_repos   = $::php::params::manage_repos,
-  $fpm            = true,
-  $embedded       = false,
-  $dev            = true,
-  $composer       = true,
-  $pear           = true,
-  $pear_ensure    = $::php::params::pear_ensure,
-  $phpunit        = false,
-  $extensions     = {},
-  $settings       = {},
-  $package_prefix = $::php::params::package_prefix,
-  $config_root_ini = $::php::params::config_root_ini,
-  $ext_tool_enable = $::php::params::ext_tool_enable,
-  $ext_tool_query  = $::php::params::ext_tool_query,
+  $ensure           = $::php::params::ensure,
+  $manage_repos     = $::php::params::manage_repos,
+  $fpm              = true,
+  $fpm_service_name = $::php::params::fpm_service_name,
+  $embedded         = false,
+  $dev              = true,
+  $composer         = true,
+  $pear             = true,
+  $pear_ensure      = $::php::params::pear_ensure,
+  $phpunit          = false,
+  $extensions       = {},
+  $settings         = {},
+  $package_prefix   = $::php::params::package_prefix,
+  $config_root_ini  = $::php::params::config_root_ini,
+  $ext_tool_enable  = $::php::params::ext_tool_enable,
+  $ext_tool_query   = $::php::params::ext_tool_query,
 ) inherits ::php::params {
 
   validate_string($ensure)
